@@ -30,7 +30,16 @@
         <td>
           <b>#{{ asset.rank }}</b>
         </td>
-        <td>{{ asset.name }}</td>
+        <router-link
+          class="hover:underline text-green-600"
+          :to="{ name:'coin-detail', params: {id:asset.id}}"
+        >
+          <td>{{ asset.name }}</td>
+          <small class="ml-1 text-gray-500">
+            {{ asset.symbol }}
+          </small>
+        </router-link>
+
         <td>{{ asset.priceUsd | dollar }}</td>
         <td>{{ asset.marketCapUsd | dollar }}</td>
         <td
@@ -42,20 +51,33 @@
         >
           {{ asset.changePercent24Hr | percent }}
         </td>
-        <td class="hidden sm:block" />
+        <td class="hidden sm:block">
+          <Button @click="goToCoin(asset.id)">
+            <span>Detalle</span>
+          </Button>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
+import Button from './Button.vue';
+
 export default {
   name: 'AssetsTable',
-
+  components: {
+    Button,
+  },
   props: {
     assets: {
       type: Array,
       default: () => [],
+    },
+  },
+  methods: {
+    goToCoin(id) {
+      this.$router.push({ name: 'coin-detail', params: { id } });
     },
   },
 };

@@ -6,9 +6,12 @@
       >
         <div class="flex items-center flex-shrink-0 text-white mr-6">
           <logo class="mr-2" />
-          <span
+          <router-link
+            :to="{name:'home'}"
             class="font-semibold text-xl tracking-tight"
-          >Crypto Exchange</span>
+          >
+            Crypto Exchange
+          </router-link>
         </div>
         <div
           class="hidden sm:block w-full block flex-grow lg:flex lg:items-center lg:w-auto"
