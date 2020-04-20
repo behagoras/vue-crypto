@@ -6,13 +6,24 @@
     `"
     @click="buttonClick"
   >
-    <slot />
+    <BeatLoader
+      :loading="isLoading"
+      :color="'#68d391'"
+      :size="8"
+    />
+    <slot v-show="!isLoading" />
   </button>
 </template>
 
 <script>
 export default {
   name: 'Button',
+  props: {
+    isLoading: {
+      type: Boolean,
+      default: false,
+    },
+  },
   methods: {
     buttonClick() {
       this.$emit('click');

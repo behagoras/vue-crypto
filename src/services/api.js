@@ -21,8 +21,18 @@ const getAssetHistory = (coin) => {
     .then((res) => res.data);
 };
 
+const getMarkets = (coin) => fetch(`${API_URL}/assets/${coin}/markets?limit=5`)
+  .then((res) => res.json())
+  .then((res) => res.data);
+
+const getExchange = (id) => fetch(`${API_URL}/exchanges/${id}`)
+  .then((res) => res.json())
+  .then((res) => res.data);
+
 export default {
   getAssets,
   getAsset,
   getAssetHistory,
+  getMarkets,
+  getExchange,
 };
